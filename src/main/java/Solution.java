@@ -1,20 +1,15 @@
 import java.util.Arrays;
 
-public class Solution {
+class Solution {
     public int minMoves2(int[] nums) {
+        int n = nums.length;
+        int mid = n / 2;
         Arrays.sort(nums);
-        if (nums.length % 2 != 0) {
-            return countMoves(nums, nums[nums.length / 2]);
-        } else {
-            return Math.min(countMoves(nums, nums[nums.length / 2 - 1]), countMoves(nums, nums[nums.length / 2] + 1));
+        int res = 0;
+        for (int x : nums) {
+            res += Math.abs(nums[mid] - x);
         }
-    }
 
-    private int countMoves(int[] nums, int target) {
-        int moves = 0;
-        for (int i = 0; i < nums.length; i++) {
-            moves += Math.abs(nums[i] - target);
-        }
-        return moves;
+        return res;
     }
 }
